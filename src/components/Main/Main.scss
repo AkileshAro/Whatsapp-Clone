@@ -1,0 +1,15 @@
+.main{
+    min-height: 750px;
+    height: 85vh;
+    width: 85vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    .chat-window{
+        width: 70%;
+        background-color: rgb(241, 241, 241);
+        height: 100%;
+    }
+    
+}

@@ -1,0 +1,26 @@
+.sidebar{
+    width: 30%;
+    height: 100%;
+    z-index: 10;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, .1);
+    .sidebar-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.2em 1em;
+        border-bottom: 1px solid whitesmoke;
+        .left{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            h4,p{
+                margin:0;
+            }
+        }
+    }
+    .sidebar-search{
+        display: flex;
+        padding : 1.2em;
+        background-color: rgb(241, 241, 241);
+    }
+}
