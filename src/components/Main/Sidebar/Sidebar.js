@@ -14,15 +14,18 @@ import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { ChatContext } from '../../../ChatProvider';
-import { db } from '../../../firebase';
+import { db, auth } from '../../../firebase';
 import img from '../../../images/placeholder.jpg';
+import { Link } from 'react-router-dom';
 import './Sidebar.scss';
+import { useHistory } from 'react-router-dom';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
 function Sidebar() {
+    const history = useHistory();
     const [chats, setChats] = useContext(ChatContext);
     const [chat, setChat] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -73,6 +76,11 @@ function Sidebar() {
 
     }
 
+    const logOut = () => {
+        auth.signOut().then(() => {
+            history.push('/');
+        })
+    }
 
     return (
         <div className='sidebar'>
@@ -83,6 +91,9 @@ function Sidebar() {
                         <h4>Username</h4>
                         <p>Location</p>
                     </div>
+                </div>
+                <div className="middle">
+                    <button onClick={logOut}>out</button>
                 </div>
                 <div className="right">
                     <Add className={classes.addButton} onClick={() => setIsModalOpen(true)} />
@@ -103,10 +114,12 @@ function Sidebar() {
             <div className="sidebar-chats">
                 {chats.length > 0 ? chats.map((chat, i) => {
                     return (
-                        <div className={classes.chatItem}>
-                            {chat.img ? <Avatar alt={chat.name} src={chat.img} style={{ marginRight: "0.5em" }} /> : <Avatar alt={chat.name} style={{ marginRight: "0.5em" }} />}
-                            <h4 style={{ margin: "0" }}>{chat.name}</h4>
-                        </div>
+                        <Link to={`/${chat.id}`} >
+                            <div className={classes.chatItem}>
+                                {chat.img ? <Avatar alt={chat.name} src={chat.img} style={{ marginRight: "0.5em" }} /> : <Avatar alt={chat.name} style={{ marginRight: "0.5em" }} />}
+                                <h4 style={{ margin: "0" }}>{chat.name}</h4>
+                            </div>
+                        </Link>
                     )
                 }) :
                     null
@@ -138,7 +151,7 @@ function Sidebar() {
                 </DialogActions>
             </Dialog>
 
-        </div>
+        </div >
 
 
 

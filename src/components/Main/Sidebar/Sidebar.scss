@@ -1,14 +1,11 @@
 .sidebar{
-    width: 30%;
-    height: 100%;
-    z-index: 10;
-    box-shadow: 2px 0px 10px rgba(0, 0, 0, .1);
     .sidebar-header{
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 1.2em 1em;
         border-bottom: 1px solid whitesmoke;
+        height: 50px;
         .left{
             display: flex;
             align-items: center;
