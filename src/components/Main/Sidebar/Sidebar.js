@@ -19,12 +19,13 @@ import img from '../../../images/placeholder.jpg';
 import { Link } from 'react-router-dom';
 import './Sidebar.scss';
 import { useHistory } from 'react-router-dom';
-
+import { AuthContext } from '../../../context/AuthContext';
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
 function Sidebar() {
+    const { currentUser, setCurrentUser } = useContext(AuthContext);
     const history = useHistory();
     const [chats, setChats] = useContext(ChatContext);
     const [chat, setChat] = useState('');
@@ -78,7 +79,9 @@ function Sidebar() {
 
     const logOut = () => {
         auth.signOut().then(() => {
-            history.push('/');
+            setCurrentUser(null);
+            console.log(currentUser);
+            history.push('/auth');
         })
     }
 
@@ -114,7 +117,7 @@ function Sidebar() {
             <div className="sidebar-chats">
                 {chats.length > 0 ? chats.map((chat, i) => {
                     return (
-                        <Link to={`/${chat.id}`} >
+                        <Link to={`/chats/${chat.id}`} key={i}>
                             <div className={classes.chatItem}>
                                 {chat.img ? <Avatar alt={chat.name} src={chat.img} style={{ marginRight: "0.5em" }} /> : <Avatar alt={chat.name} style={{ marginRight: "0.5em" }} />}
                                 <h4 style={{ margin: "0" }}>{chat.name}</h4>
