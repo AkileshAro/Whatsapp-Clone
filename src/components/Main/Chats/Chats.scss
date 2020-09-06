@@ -1,6 +1,22 @@
 .chats{
     display: flex;
     width: 100%;
+    box-shadow: 1px 1px 20px rgba(0,0,0,0.1);
+    .sidebar{
+        height: 100%;
+        width: 40%;
+        z-index: 10;
+        box-shadow: 2px 0px 10px rgba(0, 0, 0, .1);
+      }
+      .main-window{
+        width: 60%;
+      }
+      .temporary-window{
+        width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      }
     .main-window{
         width: 70%;
         background-color: rgb(241, 241, 241);
@@ -15,15 +31,37 @@
             padding:1.2em
         }
         .main-chat{
+            overflow: auto;
             flex:1;
             background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
-            .message{
-                p{
-                    background: white;
-                    width: fit-content;
-                    padding: 0.5em 1em;
-                    margin: 1.5em;
-                    border-radius: 5px;
+            .message-container{
+                position: relative;
+                margin: 1.5em;
+                .message{
+                    .msg-name{
+                        position: absolute;
+                        top: -10px;
+                        left: 10px;
+                        font-size: 0.8em;
+                        font-weight: 800;
+                        
+                    }
+                    .msg-txt{
+                        background: white;
+                        width: fit-content;
+                        min-width: 70px;
+                        padding: 0.5em 1em;
+                        border-radius: 5px;
+                        margin: 0px;
+                    }
+                }
+                .msg-time{
+                    margin: 0px;
+                    position: a;
+                    font-size: 0.6em;
+                    color: gray;
+                    margin-top: 5px;
+                    margin-left: 10px;
                 }
             }
         }

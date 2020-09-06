@@ -1,23 +1,35 @@
 .sidebar{
+    background-color: #673AB7;
     .sidebar-header{
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 1.2em 1em;
-        border-bottom: 1px solid whitesmoke;
         height: 50px;
+        color:white;
+        background-color: #432871;
         .left{
             display: flex;
             align-items: center;
             justify-content: center;
-            h4,p{
+            h2,p{
                 margin:0;
             }
         }
     }
-    .sidebar-search{
-        display: flex;
-        padding : 1.2em;
-        background-color: rgb(241, 241, 241);
+    .sidebar-chats{
+        a{
+            text-decoration: none !important;
+        }
+        .list-item{
+            
+            display: flex;
+            align-items: center;
+            margin: 1.5em 1em;
+            color: white;
+            p{
+                font-size: 1.2em;
+            }
+        }
     }
 }

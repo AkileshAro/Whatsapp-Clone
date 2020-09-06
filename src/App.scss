@@ -1,33 +1,11 @@
 .App {
-  .whatsapp-container{
-    background: #94e694;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
     .whatsapp{
       background-color: white;
-      width: 80%;
+      width: 100%;
       min-height: 700px;
       height: 80%;
       display: flex;
-      .sidebar{
-        height: 100%;
-        width: 30%;
-        z-index: 10;
-        box-shadow: 2px 0px 10px rgba(0, 0, 0, .1);
-      }
-      .main-window{
-        width: 70%;
-      }
-      .temporary-window{
-        width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      }
     }
   }
-}
 
 

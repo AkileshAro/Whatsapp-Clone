@@ -20,12 +20,10 @@ function Auth() {
     }
 
     return (
-        <div>
-            <div className='auth-body'>
-                <h2>Welcome to whatsapp Rooms</h2>
-                <p>Log in to get started</p>
-                <img src={img} alt="google" height='75' onClick={handleSignIn} />
-            </div>
+        <div className='auth'>
+            <h2>Welcome to whatsapp Rooms</h2>
+            <p>Log in to get started</p>
+            <img src={img} alt="google" height='75' onClick={handleSignIn} />
         </div>
 
     )

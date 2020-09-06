@@ -1,10 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Add } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
-import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -30,42 +26,7 @@ function Sidebar() {
     const [chats, setChats] = useContext(ChatContext);
     const [chat, setChat] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            padding: '2px 4px',
-            display: 'flex',
-            alignItems: 'center',
-            width: 400,
-            borderRadius: '100px',
-            boxShadow: 'none'
-        },
-        input: {
-            marginLeft: theme.spacing(1),
-            flex: 1,
-            textIndent: "5px"
-        },
-        iconButton: {
-            padding: 10,
-        },
-        addButton: {
-            padding: ".4em",
-            background: "#94e694",
-            borderRadius: "100%",
-            color: 'white',
-            cursor: 'pointer'
-        },
-        addChatDialog: {
-            minWidth: '400px'
-        },
-        chatItem: {
-            display: "flex",
-            alignItems: "center",
-            padding: "1em",
-            borderBottom: "1px solid #f1f1f1",
-            cursor: "pointer"
-        }
-    }));
-    const classes = useStyles();
+
     const addChat = () => {
         db.collection('chats').add({ name: chat }).then(res => {
             console.log(res);
@@ -91,7 +52,7 @@ function Sidebar() {
                 <div className="left">
                     <Avatar alt="Akilesh Rao" src="/static/images/avatar/1.jpg" style={{ marginRight: '.4em' }} />
                     <div className="user-info">
-                        <h4>Username</h4>
+                        <h2>Username</h2>
                         <p>Location</p>
                     </div>
                 </div>
@@ -99,28 +60,16 @@ function Sidebar() {
                     <button onClick={logOut}>out</button>
                 </div>
                 <div className="right">
-                    <Add className={classes.addButton} onClick={() => setIsModalOpen(true)} />
+                    <Add className='' onClick={() => setIsModalOpen(true)} />
                 </div>
-            </div>
-            <div className="sidebar-search">
-                <Paper component="div" className={classes.root}>
-                    <InputBase
-                        className={classes.input}
-                        placeholder="Search Chat"
-                        inputProps={{ 'aria-label': 'Search Chat', 'style': { "textIndent": "10px" } }}
-                    />
-                    <IconButton className={classes.iconButton} aria-label="search">
-                        <SearchIcon />
-                    </IconButton>
-                </Paper>
             </div>
             <div className="sidebar-chats">
                 {chats.length > 0 ? chats.map((chat, i) => {
                     return (
                         <Link to={`/chats/${chat.id}`} key={i}>
-                            <div className={classes.chatItem}>
+                            <div className='list-item'>
                                 {chat.img ? <Avatar alt={chat.name} src={chat.img} style={{ marginRight: "0.5em" }} /> : <Avatar alt={chat.name} style={{ marginRight: "0.5em" }} />}
-                                <h4 style={{ margin: "0" }}>{chat.name}</h4>
+                                <p style={{ margin: "0" }}>{chat.name}</p>
                             </div>
                         </Link>
                     )

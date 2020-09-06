@@ -12,17 +12,15 @@ function App() {
     <AuthProvider>
       <ChatProvider>
         <div className="App">
-          <div className="whatsapp-container">
-            <div className="whatsapp">
-              <Router>
-                <Switch>
-                  <PrivateRoute exact path='/chats' component={Chats} />
-                  <PrivateRoute path='/chats/:chatId' component={Chats} />
-                  <Route path='/auth' component={Auth} />
-                  <Redirect to='/auth' from='/' />
-                </Switch>
-              </Router>
-            </div>
+          <div className="whatsapp">
+            <Router>
+              <Switch>
+                <PrivateRoute exact path='/chats' component={Chats} />
+                <PrivateRoute path='/chats/:chatId' component={Chats} />
+                <Route path='/auth' component={Auth} />
+                <Redirect to='/auth' from='/' />
+              </Switch>
+            </Router>
           </div>
         </div>
       </ChatProvider>
