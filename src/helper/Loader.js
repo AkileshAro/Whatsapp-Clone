@@ -1,9 +1,13 @@
 import React from 'react'
+import './Loader.scss';
 
 function Loader() {
     return (
-        <div style={{ height: "100vh", width: '100%' }}>
-            <h1>Loading</h1>
+        <div className='loader'>
+            <h1 className='croom'>Croom</h1>
+            <h1 className='dots' id='uno'>.</h1>
+            <h1 className='dots' id='dos'>.</h1>
+            <h1 className='dots' id='tres'>.</h1>
         </div>
     )
 }

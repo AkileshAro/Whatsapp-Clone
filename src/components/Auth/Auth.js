@@ -8,6 +8,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { Done } from '@material-ui/icons';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from '../../helper/Loader';
 
 function Auth() {
     const history = useHistory();
@@ -16,36 +17,43 @@ function Auth() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-
+    const [loading, setLoading] = useState(false);
     if (currentUser) return <Redirect to={'/chats'} />
 
     const handleAuth = (method) => {
+        setLoading(true);
         if (method === 'google') {
             auth.signInWithPopup(gProvider).then(res => {
+                setLoading(false);
                 toast.success("Welcome back.");
                 history.push('/chats');
                 console.log(res);
             }).catch(err => {
+                setLoading(false);
                 toast.error(err.message);
                 console.log(err.message);
             })
         } else if (method === 'enp') {
             auth.signInWithEmailAndPassword(email, password).then(res => {
+                setLoading(false);
                 toast.success("Welcome back.");
                 history.push('/chats');
                 setEmail(''); setUsername(''); setPassword('');
                 console.log(res);
             }).catch(err => {
+                setLoading(false);
                 toast.error(err.message);
                 console.log(err.message);
             })
         } else {
             auth.createUserWithEmailAndPassword(email, password).then(res => {
+                setLoading(false);
                 toast.success("Succesfully registered & logged in.")
                 setAuthMode('login');
                 setEmail(''); setUsername(''); setPassword('');
                 console.log(res);
             }).catch(err => {
+                setLoading(false);
                 toast.error(err.message);
                 console.log(err.message);
             })
@@ -99,6 +107,7 @@ function Auth() {
                     }
                 </div>
             </div>
+            {loading ? <Loader /> : null}
         </div>
 
     )
