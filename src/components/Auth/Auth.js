@@ -6,6 +6,8 @@ import { useHistory, Redirect, Link } from 'react-router-dom';
 import { gProvider, auth } from '../../firebase';
 import { AuthContext } from '../../context/AuthContext';
 import { Done } from '@material-ui/icons';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Auth() {
     const history = useHistory();
@@ -20,25 +22,31 @@ function Auth() {
     const handleAuth = (method) => {
         if (method === 'google') {
             auth.signInWithPopup(gProvider).then(res => {
+                toast.success("Welcome back.");
                 history.push('/chats');
                 console.log(res);
             }).catch(err => {
+                toast.error(err.message);
                 console.log(err.message);
             })
         } else if (method === 'enp') {
             auth.signInWithEmailAndPassword(email, password).then(res => {
+                toast.success("Welcome back.");
                 history.push('/chats');
                 setEmail(''); setUsername(''); setPassword('');
                 console.log(res);
             }).catch(err => {
+                toast.error(err.message);
                 console.log(err.message);
             })
         } else {
             auth.createUserWithEmailAndPassword(email, password).then(res => {
+                toast.success("Succesfully registered & logged in.")
                 setAuthMode('login');
                 setEmail(''); setUsername(''); setPassword('');
                 console.log(res);
             }).catch(err => {
+                toast.error(err.message);
                 console.log(err.message);
             })
         }

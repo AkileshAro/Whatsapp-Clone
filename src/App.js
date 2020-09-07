@@ -6,6 +6,7 @@ import Auth from './components/Auth/Auth';
 import { AuthProvider } from './context/AuthContext';
 import Chats from './components/Main/Chats/Chats';
 import PrivateRoute from './helper/PrivateRoute';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -22,6 +23,15 @@ function App() {
               </Switch>
             </Router>
           </div>
+          <ToastContainer position="top-center"
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover />
         </div>
       </ChatProvider>
     </AuthProvider>

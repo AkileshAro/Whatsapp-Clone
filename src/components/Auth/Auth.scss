@@ -7,7 +7,7 @@
     font-family: 'Source Sans Pro', sans-serif;
     .left{
         height: 100%;
-        width: 70%;
+        width: 65%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -24,11 +24,11 @@
             font-size: 1.4em;
         }
         img{
-            height: 70vh;
+            height: 80vh;
         }
     }
     .right{
-        width: 30%;
+        width: 35%;
         background: #6C63FF;
         color: white;
         display: flex;

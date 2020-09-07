@@ -69,6 +69,7 @@ function Chats() {
                         <h1>Add a chat</h1>
                     </div>
             }
+
         </div>
     )
 }
