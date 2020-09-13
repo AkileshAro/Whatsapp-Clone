@@ -1,0 +1,36 @@
+.app-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: #fff;
+    padding: 0.5em 1em;
+    font-family: 'DM Sans', sans-serif;
+    border-bottom: 1px solid #f3f3f3;
+    .left{
+        display: flex;
+        align-items: center;
+        p{
+            margin-left: 0.5em;
+            font-size: 1.2em;
+            color: #bbbbbb;
+            font-weight: 500;
+        }
+    }
+
+    .middle{
+        span{
+            font-size: 2em;
+            font-weight: 700;
+            color: #6C63FF;
+        }
+    }
+
+    .right{        
+        font-size: 1.2em;
+        color: #bbbbbb;
+        display: flex;
+        width: 100px;
+        justify-content: space-between;
+    }
+}

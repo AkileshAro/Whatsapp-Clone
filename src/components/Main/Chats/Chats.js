@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Sidebar from '../Sidebar/Sidebar'
+import Avatar from '@material-ui/core/Avatar';
 import './Chats.scss';
 import { db } from '../../../firebase';
-import { SentimentSatisfiedAlt } from '@material-ui/icons';
+import { SentimentSatisfiedAlt, AddCircleOutline, InfoOutlined } from '@material-ui/icons';
 import { useParams } from 'react-router-dom'
 
 function Chats() {
@@ -40,33 +40,43 @@ function Chats() {
     }
 
     return (
-        <div className='chats'>
-            <Sidebar className='sidebar' />
+        <div className='chat'>
             {
-                chatId ? <div className='main-window'>
-                    <div className="header">
-                        <h4>{chat}</h4>
-                    </div>
-                    <div className="main-chat">
-                        {messages.map((msg, index) => {
-                            return (
-                                <div className="message-container" key={index}>
-                                    <div className="message">
-                                        <span className='msg-name'>{msg.name}</span>
-                                        <p className='msg-txt'>{msg && msg.message}</p>
+                chatId ?
+                    <div className='main-window'>
+                        <div className="chat-header">
+                            <div className="left">
+                                <Avatar alt='Chat Icon' />
+                                <p>Chat Name</p>
+                            </div>
+                            <div className="right">
+                                <AddCircleOutline />
+                                <InfoOutlined />
+                            </div>
+                        </div>
+                        <div className='chat-body'>
+                            {messages.map((msg, index) => {
+                                return (
+                                    <div className="message-container" key={index}>
+                                        <div className="message">
+                                            <span className='msg-name'>{msg.name}</span>
+                                            <p className='msg-txt'>{msg && msg.message}</p>
+                                        </div>
+                                        <p className='msg-time'>{new Date(msg.timestamp.toDate()).toLocaleTimeString()}</p>
                                     </div>
-                                    <p className='msg-time'>{new Date(msg.timestamp.toDate()).toLocaleTimeString()}</p>
-                                </div>
-                            )
-                        })}
+                                )
+                            })}
+                        </div>
+
+                        <form className="chat-footer" onSubmit={(event) => addMessage(event)}>
+                            <input type="text" placeholder="Type a message" value={inputMsg} onChange={(e) => setInputMsg(e.currentTarget.value)} />
+                            <SentimentSatisfiedAlt style={{ marginRight: '10px' }} />
+                        </form>
                     </div>
-                    <form className="message-field" onSubmit={(event) => addMessage(event)}>
-                        <SentimentSatisfiedAlt style={{ marginRight: '10px' }} />
-                        <input type="text" placeholder="Type a message" value={inputMsg} onChange={(e) => setInputMsg(e.currentTarget.value)} />
-                    </form>
-                </div> :
+                    :
                     <div className='temporary-window'>
-                        <h1>Add a chat</h1>
+                        <h1>No chat found</h1>
+                        <p>Select a chat to get started.</p>
                     </div>
             }
 

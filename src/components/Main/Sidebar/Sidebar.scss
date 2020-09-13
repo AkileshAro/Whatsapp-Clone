@@ -1,35 +1,47 @@
 .sidebar{
-    background-color: #673AB7;
-    .sidebar-header{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1.2em 1em;
-        height: 50px;
-        color:white;
-        background-color: #432871;
-        .left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    width: 25%;
+    font-family: 'DM Sans', sans-serif;
+    border-right : 1px solid #f3f3f3;
+    .chat-list{
+        flex: 1;
+        width: 100%;
+        .list-item{
+            display: flex;
+            align-items: center;
+            padding: 0.5em 1em;
+            text-decoration: none;
+            &:hover{
+                background: #6C63FF;
+                color: white;
+                transition: 0.1s all ease-in-out;
+            }
+        }
+    }
+    .add-chat{
+        width: 100%;
+        button{
+            cursor: pointer;
+            outline: none;
+            margin: 1em;
+            border: 0px;
+            padding: 0.5em 1em;
             display: flex;
             align-items: center;
             justify-content: center;
-            h2,p{
-                margin:0;
-            }
-        }
-    }
-    .sidebar-chats{
-        a{
-            text-decoration: none !important;
-        }
-        .list-item{
-            
-            display: flex;
-            align-items: center;
-            margin: 1.5em 1em;
             color: white;
-            p{
-                font-size: 1.2em;
-            }
+            background: #6c63ff;
+            border-radius: 0.5em;
+            font-size: 1em;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            width: 85%;
         }
     }
+
 }
+

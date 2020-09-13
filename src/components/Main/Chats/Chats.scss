@@ -1,82 +1,105 @@
-.chats{
-    display: flex;
+.chat{
     width: 100%;
-    box-shadow: 1px 1px 20px rgba(0,0,0,0.1);
-    .sidebar{
-        height: 100%;
-        width: 40%;
-        z-index: 10;
-        box-shadow: 2px 0px 10px rgba(0, 0, 0, .1);
-      }
-      .main-window{
-        width: 60%;
-      }
-      .temporary-window{
-        width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      }
-    .main-window{
-        width: 70%;
-        background-color: rgb(241, 241, 241);
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    .temporary-window{
         height: 100%;
         display: flex;
+        align-items: center;
+        justify-content: center;
         flex-direction: column;
-        .header{
-            height: 50px;
-            background-color: white;
+        h1,p{
+            margin: 0em;
+        }
+        h1{
+            color:rgb(94, 94, 94);
+        }
+        p{
+            font-size: 1.2em;
+            color:rgb(187, 187, 187);
+        }
+    }
+    
+    .main-window{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        .chat-header{
             display: flex;
             align-items: center;
-            padding:1.2em
+            justify-content: space-between;
+            padding: 0.5em 1em;
+            border-bottom: 1px solid #f3f3f3;
+            .left{
+                display: flex;
+                align-items: center;
+                p{
+                    margin-left: 0.5em;
+                }
+            }
+            .right{
+                width: 100px;
+                display: flex;
+                justify-content: space-evenly;
+                svg{
+                    cursor: pointer;
+                    font-size: 2em;
+                    color: #bbbbbb;
+                }
+            }
+            
         }
-        .main-chat{
-            overflow: auto;
-            flex:1;
-            background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+
+        .chat-body{
+            flex: 1;
+            padding: 1em;
             .message-container{
                 position: relative;
-                margin: 1.5em;
+                margin-bottom: 3em;
                 .message{
+                    width: fit-content;
+                    background: #f3f3f3;
+                    position: relative;
+                    border-radius : 1em;
+
                     .msg-name{
                         position: absolute;
                         top: -10px;
-                        left: 10px;
+                        left: 14px;
                         font-size: 0.8em;
-                        font-weight: 800;
-                        
+                        font-weight: 700;
                     }
                     .msg-txt{
-                        background: white;
-                        width: fit-content;
-                        min-width: 70px;
-                        padding: 0.5em 1em;
-                        border-radius: 5px;
-                        margin: 0px;
+                        padding: 0.5em 0.8em;
                     }
                 }
+
                 .msg-time{
-                    margin: 0px;
-                    position: a;
+                    position: absolute;
+                    top: 30px;
                     font-size: 0.6em;
-                    color: gray;
-                    margin-top: 5px;
-                    margin-left: 10px;
+                    left: 14px;
                 }
             }
         }
-        .message-field{
-            background: #f1f1f1;
-            padding: 1em;
+
+        .chat-footer{
             display: flex;
             align-items: center;
+            background: #f3f3f3;
             input{
                 width: 100%;
-                padding: 1em 0;
+                padding: 1.2em;
+                font-size: 1.2em;
+                font-family: 'DM Sans', sans-serif;
                 border: 0px;
-                border-radius: 100px;
+                background: #f3f3f3;
                 outline: none;
-                text-indent: 15px;
+            }
+            svg{
+                margin: 0 .8em !important;
+                font-size: 2em;
+                color: #bbbbbb;
             }
         }
     }

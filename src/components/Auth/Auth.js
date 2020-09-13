@@ -3,7 +3,7 @@ import img from '../../images/google.png';
 import authImg from '../../images/authImg.png'
 import './Auth.scss';
 import { useHistory, Redirect, Link } from 'react-router-dom';
-import { gProvider, auth } from '../../firebase';
+import { gProvider, auth, db } from '../../firebase';
 import { AuthContext } from '../../context/AuthContext';
 import { Done } from '@material-ui/icons';
 import { toast } from 'react-toastify';
@@ -25,13 +25,21 @@ function Auth() {
         if (method === 'google') {
             auth.signInWithPopup(gProvider).then(res => {
                 setLoading(false);
+                console.log(res);
+                const docRef = db.collection('users').doc(res.user.email);
+                docRef.get().then(doc => {
+                    if (!doc.exists) {
+                        docRef.set({
+                            name: res.user.displayName,
+                            email: res.user.email
+                        })
+                    }
+                })
                 toast.success("Welcome back.");
                 history.push('/chats');
-                console.log(res);
             }).catch(err => {
                 setLoading(false);
                 toast.error(err.message);
-                console.log(err.message);
             })
         } else if (method === 'enp') {
             auth.signInWithEmailAndPassword(email, password).then(res => {
@@ -39,23 +47,27 @@ function Auth() {
                 toast.success("Welcome back.");
                 history.push('/chats');
                 setEmail(''); setUsername(''); setPassword('');
-                console.log(res);
+
             }).catch(err => {
                 setLoading(false);
                 toast.error(err.message);
-                console.log(err.message);
             })
         } else {
             auth.createUserWithEmailAndPassword(email, password).then(res => {
                 setLoading(false);
                 toast.success("Succesfully registered & logged in.")
                 setAuthMode('login');
+                db.collection('users').doc(email).set({
+                    name: username,
+                    email: email
+                })
+                res.user.updateProfile({
+                    displayName: username
+                })
                 setEmail(''); setUsername(''); setPassword('');
-                console.log(res);
             }).catch(err => {
                 setLoading(false);
                 toast.error(err.message);
-                console.log(err.message);
             })
         }
     }

@@ -4,7 +4,7 @@ import { Switch, Route, BrowserRouter as Router, Redirect } from 'react-router-d
 import { ChatProvider } from './ChatProvider';
 import Auth from './components/Auth/Auth';
 import { AuthProvider } from './context/AuthContext';
-import Chats from './components/Main/Chats/Chats';
+import Main from './components/Main/Main';
 import PrivateRoute from './helper/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
 
@@ -12,17 +12,15 @@ function App() {
   return (
     <AuthProvider>
       <ChatProvider>
-        <div className="App">
-          <div className="whatsapp">
-            <Router>
-              <Switch>
-                <PrivateRoute exact path='/chats' component={Chats} />
-                <PrivateRoute path='/chats/:chatId' component={Chats} />
-                <Route path='/auth' component={Auth} />
-                <Redirect to='/auth' from='/' />
-              </Switch>
-            </Router>
-          </div>
+        <div className="chat-app">
+          <Router>
+            <Switch>
+              <PrivateRoute exact path='/chats' component={Main} />
+              <PrivateRoute path='/chats/:chatId' component={Main} />
+              <Route path='/auth' component={Auth} />
+              <Redirect to='/auth' from='/' />
+            </Switch>
+          </Router>
           <ToastContainer position="top-center"
             autoClose={4000}
             hideProgressBar={false}

@@ -7,8 +7,6 @@ function PrivateRoute({ component: Component, ...rest }) {
     useEffect(() => {
         auth.onAuthStateChanged(user => {
             setIsLoading(false);
-            console.log(user);
-            console.log(isLoading);
         })
     }, [])
     const currentUser = auth.currentUser;

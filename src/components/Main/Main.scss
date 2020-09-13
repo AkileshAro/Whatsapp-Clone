@@ -1,0 +1,13 @@
+.app-container{
+    width: 80%;
+    margin: auto;
+    height: 80vh;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 5px 10px rgba(0,0,0,.1);
+    .app-body{
+        display: flex;
+        height: 100%;
+    }
+}
