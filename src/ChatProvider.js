@@ -7,6 +7,7 @@ export const ChatProvider = props => {
     const [chats, setChats] = useState([]);
 
     useEffect(() => {
+        console.log('ran');
         db.collection('chats').get().then(res => {
             let chatsArr = [];
             res.forEach(doc => {
@@ -17,7 +18,7 @@ export const ChatProvider = props => {
     }, []);
 
     return (
-        <ChatContext.Provider value={[chats, setChats]}>
+        <ChatContext.Provider value={{ chats, setChats }}>
             {props.children}
         </ChatContext.Provider>
     )

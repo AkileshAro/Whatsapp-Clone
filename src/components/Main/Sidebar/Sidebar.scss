@@ -10,6 +10,7 @@
     .chat-list{
         flex: 1;
         width: 100%;
+        overflow: auto;
         .list-item{
             display: flex;
             align-items: center;
@@ -45,3 +46,8 @@
 
 }
 
+
+.dialog-form{
+    display: flex;
+    align-items: center;
+}
